@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View 1</title>
+</head>
+<body>
+    <p>view 1</p>
+    <p th:if="${session.authenticated==null}">not autenticated</p>
+    <br>
+    <p th:if="${session.authenticated}"> autenticated</p>
+
+    <form th:action="@{/logout}" method="get">
+        <input type="submit" value="Logout">
+    </form>
+    
+</body>
+</html>

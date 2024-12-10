@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form th:action="@{/login}", method="post" th:object="${loginUser}">
+        <div>
+            <label for="username">Username: </label>
+            <input type="text" name="username" th:value="*{username}" placeholder="Username" required>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="error"></p>
+            <br>
+            <br><br>
+            <label for="password">Password: </label>
+            <input type="text" name="password" th:value="*{password}" placeholder="password" required>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="error"></p>
+        </div>
+        <br><br>
+        <div th:if="${session.hasCaptcha}">
+            <p th:text="'Solve this captcha: ' + ${session.captchaString} + '?'"></p>
+            <input type="text" name="captchaAnswer" placeholder="Answer" required>
+        </div>
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

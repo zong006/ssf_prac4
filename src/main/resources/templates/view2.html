@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View 2</title>
+</head>
+<body>
+    <p>view 2</p>
+    <p th:text="'User ' + ${session.username} + ' has been locked..'"></p>
+    <br>
+    <a th:href="@{/}">Back to login page.</a>
+</body>
+</html>
