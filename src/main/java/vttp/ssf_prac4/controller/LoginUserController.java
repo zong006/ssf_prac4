@@ -52,7 +52,7 @@ public class LoginUserController {
                 regenerateNewCaptcha(httpSession);
                 incrementFailedLoginAttempt(httpSession);
                 
-                System.out.println("has captcha, incorrect answer : "+httpSession.getAttribute("failedLoginCount")); //
+                // System.out.println("has captcha, incorrect answer : "+httpSession.getAttribute("failedLoginCount")); //
 
                 if (hitThreeFailedLogin(httpSession)){
                     loginUserService.storeLockedUser((String) httpSession.getAttribute("username"));
@@ -68,7 +68,7 @@ public class LoginUserController {
             regenerateNewCaptcha(httpSession);
             incrementFailedLoginAttempt(httpSession);
 
-            System.out.println("no captcha, or captcha correct: " + httpSession.getAttribute("failedLoginCount")); //
+            // System.out.println("no captcha, or captcha correct: " + httpSession.getAttribute("failedLoginCount")); //
 
             if (hitThreeFailedLogin(httpSession)){
                 loginUserService.storeLockedUser((String) httpSession.getAttribute("username"));
@@ -78,8 +78,7 @@ public class LoginUserController {
         }
 
         // pass authentication, including potential captcha check
-        System.out.println(httpSession.getAttribute("failedLoginCount"));
-        System.out.println("user authenticated");
+        
         httpSession.setAttribute("authenticated", true);
 
         return "redirect:/protected";
@@ -87,7 +86,6 @@ public class LoginUserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession httpSession){
-        // httpSession.setAttribute("authenticated", false);
         httpSession.invalidate();
 
         return "redirect:/";
@@ -112,7 +110,7 @@ public class LoginUserController {
         String captchaString = loginUserService.captchaString(elements);
         httpSession.setAttribute("hasCaptcha", true);
         httpSession.setAttribute("captchaString", captchaString);
-        httpSession.setAttribute("elements", elements);
+        // httpSession.setAttribute("elements", elements);
     }
 
     private void incrementFailedLoginAttempt(HttpSession httpSession){
