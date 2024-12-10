@@ -10,6 +10,8 @@ public interface Util {
 
     String template = "stringTemplate";
 
+    int durationSeconds = 30;
+
     List<String> operations = Arrays.asList(" + ", " - ");
     
 }

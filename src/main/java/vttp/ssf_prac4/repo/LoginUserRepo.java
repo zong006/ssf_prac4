@@ -23,8 +23,8 @@ public class LoginUserRepo {
     public void storeLockedUser(String key){
 
         stringTemplate.opsForValue().setIfAbsent(key, key);
-        Duration duration = Duration.ofSeconds(30);
-        stringTemplate.opsForValue().getAndExpire(key, duration);
+        Duration lockOutTime = Duration.ofSeconds(Util.durationSeconds);
+        stringTemplate.opsForValue().getAndExpire(key, lockOutTime);
     }
 
 
